@@ -2,9 +2,9 @@
 #Importing the libraries
 # This program is to clone Image manager policies from one Policy Set to another polocy set. For any feedback and concerns reach to hmallika@akamai.com
 # IMP: Update below parameters before running this program
-#1. Line 39 . Update the Source IM Policy set or API key name
-#2. Line 40 . Update the Destination IM Policy set or API key name
-#3. Line 41: Save all IM policy names that needs to be cloned from source to destination in a text file (one entry in each line), in this case policy_list_to_clone.txt and keep it in same directory
+#1. Line 42 : Update the Source IM Policy set or API key name
+#2. Line 43 : Update the Destination IM Policy set or API key name
+#3. Line 44 : Save all IM policy names that needs to be cloned from source to destination in a text file (one entry in each line), in this case policy_list_to_clone.txt and keep it in same directory
 #4. You should have API Read/Write access to Image Manager and credential file .edgerc is stored in home dir.
 #5. Cloned IM policy automaticallay activates to Akamai staging or production, activation environment is decided by the host entry in edgerc file
 #   Eg:  host = akab-iyvy5asdasdqwo7aft-nlprmiz7yv6h6kbk.imaging.akamaiapis-staging.net --> for cloning followed by activation to staging
@@ -39,9 +39,9 @@ baseurl = '%s://%s/' % ('https', config.host)
 httpCaller = EdgeGridHttpCaller(s, debug, verbose, baseurl)
 
 ct_headers = {"content-type": "application/json"}
-luna_apitoken_header_source = {"Luna-Token": "images_menswearhouse_com_pm-10816058"}
-luna_apitoken_header_dest = {"Luna-Token": "images_josbank_com_pm-10816149", "content-type": "application/json"}
-with open("policy_list_to_clone.txt", "r") as im_policy_list_file:
+luna_apitoken_header_source = {"Luna-Token": "images_menswearhouse_com_pm-10816058"}   #-------->  Update the Source IM Policy set or API key name
+luna_apitoken_header_dest = {"Luna-Token": "images_josbank_com_pm-10816149", "content-type": "application/json"}  #----------> Update the Destination IM Policy set or API key name
+with open("policy_list_to_clone.txt", "r") as im_policy_list_file:   # -------------> text file with policy list
   for policy_name in im_policy_list_file:
       apiurl = '/imaging/v2/policies/'+policy_name
       print("\n")
